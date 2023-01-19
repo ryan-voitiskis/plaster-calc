@@ -50,17 +50,21 @@ export const productStore = defineStore("product", {
         price: 50.3,
       },
     ] as Product[],
-    showEditProduct: false, // shows AddProductModal.vue
-    editingProduct: null as number | null,
+    showAddProduct: false, // shows AddProductModal.vue
+    toEdit: null as number | null,
+    toDelete: null as number | null, // shows ConfirmDeleteProduct.vue when not null
   }),
   actions: {
     addProduct(product: Product) {
       this.productList.push(product)
-      this.showEditProduct = false
+      this.showAddProduct = false
     },
 
-    deleteProduct(id: number) {
-      this.productList = this.productList.filter((product) => product.id !== id)
+    deleteProduct() {
+      this.productList = this.productList.filter(
+        (product) => product.id !== this.toDelete
+      )
+      this.toDelete = null
     },
 
     updateProduct(product: Product) {
@@ -70,8 +74,7 @@ export const productStore = defineStore("product", {
         }
         return p
       })
-      this.editingProduct = null
-      this.showEditProduct = false
+      this.toEdit = null
     },
   },
   getters: {

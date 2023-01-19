@@ -47,12 +47,12 @@ const name = computed(() =>
 )
 
 function editProduct() {
-  products.editingProduct = props.product.id
+  products.toEdit = props.product.id
   products.showEditProduct = true
 }
 
 function deleteProduct() {
-  products.deleteProduct(props.product.id)
+  products.toDelete = props.product.id
 }
 </script>
 
@@ -68,9 +68,26 @@ function deleteProduct() {
     >
     <span>Price {{ formattedPrice }}</span>
     <span>Price/sqm: {{ formattedPricePerSqm }}</span>
-    <button @click="editProduct">Edit</button>
-    <button @click="deleteProduct">Delete</button>
+    <div class="controls">
+      <button @click="editProduct">Edit</button>
+      <button class="delete" @click="deleteProduct">Delete</button>
+    </div>
   </div>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.product {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1rem;
+  border: 1px solid black;
+  border-radius: 0.5rem;
+  box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.14);
+}
+
+.controls {
+  display: flex;
+  gap: 0.5rem;
+}
+</style>

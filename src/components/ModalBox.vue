@@ -1,11 +1,3 @@
-<template>
-  <div class="modal-backdrop" @click.self="$emit('close')">
-    <div class="modal">
-      <slot />
-    </div>
-  </div>
-</template>
-
 <script setup lang="ts">
 import {
   withDefaults,
@@ -52,6 +44,14 @@ onDeactivated(() => {
   document.body.removeEventListener("keydown", escapeClose)
 })
 </script>
+
+<template>
+  <div class="modal-backdrop" @click.self="$emit('close')">
+    <div class="modal">
+      <slot />
+    </div>
+  </div>
+</template>
 
 <style lang="scss">
 .modal-backdrop {
@@ -120,6 +120,16 @@ onDeactivated(() => {
   button.primary {
     margin-top: unset;
   }
+}
+
+.modal-footer-plain {
+  margin-top: -20px;
+  gap: 20px;
+  padding: 20px 40px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
 }
 
 @media screen and (max-width: 768px) {

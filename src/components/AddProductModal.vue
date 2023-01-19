@@ -1,20 +1,35 @@
 <script setup lang="ts">
+import { reactive } from "vue"
 import { productStore } from "../stores/productStore"
 import { Product } from "../types/Product"
 import XIcon from "./icons/XIcon.vue"
 
 const products = productStore()
-const form: Product = { ...products.getById(products.toEdit!)! }
+
+const form = reactive<Product>({
+  id: products.productList[products.productList.length - 1].id + 1,
+  name: "",
+  supplier: "",
+  price: undefined,
+  pricePerSqm: undefined,
+  length: 0,
+  height: 0,
+  thickness: 0,
+})
 </script>
 
 <template>
   <div class="modal-header">
     <h2>{{ products.toEdit ? "Edit" : "Add" }} Product</h2>
-    <button class="close" type="button" @click="products.toEdit = null">
+    <button
+      class="close"
+      type="button"
+      @click="products.showAddProduct = false"
+    >
       <XIcon />
     </button>
   </div>
-  <form @submit.prevent="products.updateProduct(form)">
+  <form @submit.prevent="products.addProduct(form)">
     <div class="modal-body">
       <label for="thickness"> Name</label>
       <input type="text" v-model="form.name" />
@@ -33,10 +48,14 @@ const form: Product = { ...products.getById(products.toEdit!)! }
       <input type="text" v-model.number="form.pricePerSqm" />
     </div>
     <div class="modal-footer">
-      <button class="secondary" type="button" @click="products.toEdit = null">
+      <button
+        class="secondary"
+        type="button"
+        @click="products.showAddProduct = false"
+      >
         Cancel
       </button>
-      <button class="primary edit" type="submit">Save</button>
+      <button class="primary" type="submit">Add</button>
     </div>
   </form>
 </template>
