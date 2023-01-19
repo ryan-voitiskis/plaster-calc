@@ -45,15 +45,6 @@ const name = computed(() =>
     ? props.product.name
     : `${props.product.height} × ${props.product.length}`
 )
-
-function editProduct() {
-  products.toEdit = props.product.id
-  products.showEditProduct = true
-}
-
-function deleteProduct() {
-  products.toDelete = props.product.id
-}
 </script>
 
 <template>
@@ -69,8 +60,10 @@ function deleteProduct() {
     <span>Price {{ formattedPrice }}</span>
     <span>Price/sqm: {{ formattedPricePerSqm }}</span>
     <div class="controls">
-      <button @click="editProduct">Edit</button>
-      <button class="delete" @click="deleteProduct">Delete</button>
+      <button @click="products.toEdit = props.product.id">Edit</button>
+      <button class="delete" @click="products.toDelete = props.product.id">
+        Delete
+      </button>
     </div>
   </div>
 </template>
