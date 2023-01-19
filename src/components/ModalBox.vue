@@ -149,8 +149,5 @@ onDeactivated(() => {
     margin: 0;
     padding: 0 10px;
   }
-  .modal-footer {
-    display: none;
-  }
 }
 </style>

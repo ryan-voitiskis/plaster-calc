@@ -23,11 +23,12 @@ const formattedPrice = computed(() =>
     ? formatPrice(
         (props.product.pricePerSqm *
           props.product.length *
-          props.product.height) /
+          props.product.width) /
           1000000
       )
     : "N/A"
 )
+console.log(props.product)
 
 const formattedPricePerSqm = computed(() =>
   props.product.pricePerSqm
@@ -35,7 +36,7 @@ const formattedPricePerSqm = computed(() =>
     : props.product.price
     ? formatPrice(
         props.product.price /
-          ((props.product.height * props.product.length) / 1000000)
+          ((props.product.width * props.product.length) / 1000000)
       )
     : "N/A"
 )
@@ -43,7 +44,7 @@ const formattedPricePerSqm = computed(() =>
 const name = computed(() =>
   props.product.name
     ? props.product.name
-    : `${props.product.height} × ${props.product.length}`
+    : `${props.product.width} × ${props.product.length}`
 )
 </script>
 
@@ -52,10 +53,10 @@ const name = computed(() =>
     <h2>{{ name }}</h2>
     <span>Supplier: {{ props.product.supplier }}</span>
     <span>Thickness: {{ props.product.thickness }}mm</span>
-    <span>Size: {{ props.product.height }} × {{ props.product.length }}mm</span>
+    <span>Size: {{ props.product.width }} × {{ props.product.length }}mm</span>
     <span
       >Area:
-      {{ (props.product.height * props.product.length) / 1000000 }}m²</span
+      {{ (props.product.width * props.product.length) / 1000000 }}m²</span
     >
     <span>Price {{ formattedPrice }}</span>
     <span>Price/sqm: {{ formattedPricePerSqm }}</span>

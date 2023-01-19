@@ -4,8 +4,8 @@
   <header>
     <h1>Plaster calc</h1>
     <nav>
-      <router-link to="/">Products to use</router-link>
-      <router-link to="/areas-to-sheet">Areas to sheet</router-link>
+      <router-link to="/">Products</router-link>
+      <router-link to="/areas-to-sheet">Areas</router-link>
       <router-link to="/material-list">Material list</router-link>
     </nav>
   </header>

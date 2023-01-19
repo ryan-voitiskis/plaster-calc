@@ -13,7 +13,7 @@ const form = reactive<Product>({
   price: undefined,
   pricePerSqm: undefined,
   length: 0,
-  height: 0,
+  width: 0,
   thickness: 0,
 })
 </script>
@@ -38,7 +38,7 @@ const form = reactive<Product>({
       <label for="thickness"> Length</label>
       <input type="text" v-model.number="form.length" />
       <label for="thickness"> Height</label>
-      <input type="text" v-model.number="form.height" />
+      <input type="text" v-model.number="form.width" />
       <label for="thickness"> Thickness</label>
       <input type="text" v-model.number="form.thickness" />
       <p>Either Price or Price/sqm is required, not both.</p>

@@ -8,7 +8,7 @@ const name = !product
   ? "this product"
   : product.name
   ? product.name
-  : `${product.height} x ${product.length}mm @ ${product.thickness}mm${
+  : `${product.width} x ${product.length}mm @ ${product.thickness}mm${
       product.supplier ? ` from ${product.supplier}` : ""
     }`
 </script>
