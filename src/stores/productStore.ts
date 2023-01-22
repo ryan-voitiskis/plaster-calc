@@ -50,6 +50,7 @@ export const productStore = defineStore("product", {
         price: 50.3,
       },
     ] as Product[],
+    sortedProductWidths: [] as number[], // calc once when generating todo*
     showAddProduct: false, // shows AddProductModal.vue
     toEdit: null as number | null,
     toDelete: null as number | null, // shows ConfirmDeleteProduct.vue when not null
@@ -75,6 +76,13 @@ export const productStore = defineStore("product", {
         return p
       })
       this.toEdit = null
+    },
+
+    generateSortedProductWidths() {
+      this.sortedProductWidths = this.productList
+        .map((p) => p.width)
+        .filter((w, i, arr) => arr.indexOf(w) === i)
+        .sort((a, b) => b - a)
     },
   },
   getters: {

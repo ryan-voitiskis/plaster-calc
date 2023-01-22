@@ -4,6 +4,13 @@ type Sheet = {
   productID: number
 }
 
+// A SheetableArea is part of, or all of, an area that can be sheeted.
+// It is used as an intermediate step in the calculation. Breaking down the problem.
+type SheetableArea = {
+  width: number // (mm)
+  length: number // (mm)
+}
+
 // A SheetPart is a part of a sheet used to cover an area.
 type SheetPart = {
   id: number
@@ -14,7 +21,7 @@ type SheetPart = {
 }
 
 // An offcut is the remaining piece of a sheet that has been used to sheet an area. Can be used to sheet another area.
-export type Offcut = {
+type Offcut = {
   id: number
   sheetID: number
   width: number // (mm)
@@ -22,4 +29,4 @@ export type Offcut = {
   thickness: number // (mm)
 }
 
-export type { Sheet, SheetPart }
+export type { Sheet, SheetableArea, SheetPart, Offcut }

@@ -1,4 +1,4 @@
-import { SheetPart } from "./SheetTypes"
+import { SheetPart, SheetableArea } from "./SheetTypes"
 
 // An Area is an area of a room to be sheeted.
 export type Area = {
@@ -9,4 +9,5 @@ export type Area = {
   length: number // (mm)
   possiblyVertical: false // only vertical if stand up sheet. when only one sheet used floor to ceiling.
   sheets: SheetPart[]
+  sheetableAreas: SheetableArea[]
 }

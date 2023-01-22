@@ -28,7 +28,6 @@ const formattedPrice = computed(() =>
       )
     : "N/A"
 )
-console.log(props.product)
 
 const formattedPricePerSqm = computed(() =>
   props.product.pricePerSqm

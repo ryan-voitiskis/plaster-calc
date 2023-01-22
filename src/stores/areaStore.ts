@@ -1,5 +1,8 @@
 import { defineStore } from "pinia"
 import { Area } from "../types/Area"
+import { SheetableArea } from "../types/SheetTypes"
+import { selectAreaSheetHeights } from "../utils/algorithmHelpers"
+import { productStore } from "./productStore"
 
 export const areaStore = defineStore("area", {
   state: () => ({
@@ -12,6 +15,7 @@ export const areaStore = defineStore("area", {
         length: 2450,
         possiblyVertical: false,
         sheets: [],
+        sheetableAreas: [],
       },
       {
         id: 2,
@@ -21,6 +25,7 @@ export const areaStore = defineStore("area", {
         length: 3220,
         possiblyVertical: false,
         sheets: [],
+        sheetableAreas: [],
       },
       {
         id: 3,
@@ -30,6 +35,7 @@ export const areaStore = defineStore("area", {
         length: 2450,
         possiblyVertical: false,
         sheets: [],
+        sheetableAreas: [],
       },
       {
         id: 2,
@@ -39,8 +45,10 @@ export const areaStore = defineStore("area", {
         length: 3220,
         possiblyVertical: false,
         sheets: [],
+        sheetableAreas: [],
       },
     ] as Area[],
+    sheetableAreas: [] as SheetableArea[],
   }),
   actions: {
     addArea(area: Area) {
@@ -53,6 +61,21 @@ export const areaStore = defineStore("area", {
 
     updateArea(area: Area) {
       this.areaList = this.areaList.map((a) => (a.id === area.id ? area : a))
+    },
+
+    generateSheetableAreas() {
+      const products = productStore()
+      products.generateSortedProductWidths()
+      this.areaList.forEach((area) => {
+        const sheetWidths = selectAreaSheetHeights(
+          products.sortedProductWidths,
+          area.height
+        )
+        area.sheetableAreas = sheetWidths.map((width) => ({
+          width: width,
+          length: area.length,
+        }))
+      })
     },
   },
   getters: {},

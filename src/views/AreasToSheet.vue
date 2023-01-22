@@ -2,8 +2,13 @@
 import { areaStore } from "../stores/areaStore"
 import AreaToSheet from "../components/AreaToSheet.vue"
 import { onMounted } from "vue"
+import { productStore } from "../stores/productStore"
 
 const areas = areaStore()
+
+onMounted(() => {
+  areaStore().generateSheetableAreas()
+})
 </script>
 
 <template>

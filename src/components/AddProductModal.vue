@@ -31,21 +31,21 @@ const form = reactive<Product>({
   </div>
   <form @submit.prevent="products.addProduct(form)">
     <div class="modal-body">
-      <label for="thickness"> Name</label>
-      <input type="text" v-model="form.name" />
-      <label for="supplier"> Supplier</label>
-      <input type="text" v-model="form.supplier" />
-      <label for="thickness"> Length</label>
-      <input type="text" v-model.number="form.length" />
-      <label for="thickness"> Height</label>
-      <input type="text" v-model.number="form.width" />
-      <label for="thickness"> Thickness</label>
-      <input type="text" v-model.number="form.thickness" />
+      <label for="name">Name</label>
+      <input id="name" type="text" v-model="form.name" />
+      <label for="supplier">Supplier</label>
+      <input id="supplier" type="text" v-model="form.supplier" />
+      <label for="length">Length</label>
+      <input id="length" type="text" v-model.number="form.length" />
+      <label for="width">Width</label>
+      <input id="width" type="text" v-model.number="form.width" />
+      <label for="thickness">Thickness</label>
+      <input id="thickness" type="text" v-model.number="form.thickness" />
       <p>Either Price or Price/sqm is required, not both.</p>
-      <label for="thickness"> Price</label>
-      <input type="text" v-model.number="form.price" />
-      <label for="thickness"> Price/sqm</label>
-      <input type="text" v-model.number="form.pricePerSqm" />
+      <label for="price">Price/unit</label>
+      <input id="price" type="text" v-model.number="form.price" />
+      <label for="price_per_sqm">Price/sqm</label>
+      <input id="price_per_sqm" type="text" v-model.number="form.pricePerSqm" />
     </div>
     <div class="modal-footer">
       <button
